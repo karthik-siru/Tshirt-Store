@@ -46,7 +46,7 @@ var userSchema = new Schema({
         default : []
     }
 
-});
+}, { timestamps : true });
 
 //virtuals for encrypted password 
 
