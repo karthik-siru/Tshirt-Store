@@ -62,19 +62,19 @@ userSchema
     return this._password;
   });
 
-userSchema.method = {
+userSchema.methods = {
   authenthicate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password;
   },
 
   securePassword: function (plainpassword) {
-    if (plainpassword) return "";
+    if (!plainpassword) return "";
     try {
       return crypto
         .createHmac("sha256", this.salt)
         .update(plainpassword)
         .digest("hex");
-    } catch (error) {
+    } catch (err) {
       return "";
     }
   },
