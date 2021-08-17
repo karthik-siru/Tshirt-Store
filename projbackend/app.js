@@ -5,7 +5,6 @@ const express = require("express");
 
 const app = express();
 
-const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
@@ -28,7 +27,7 @@ mongoose
   });
 
 // MIDDLEWARES
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
