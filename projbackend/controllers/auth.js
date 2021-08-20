@@ -63,7 +63,16 @@ exports.signin = (req, res) => {
 };
 
 exports.signout = (req, res) => {
+  // clear the cookie 
+  res.clearCookie("token");
   res.json({
     message: "user signed out ",
   });
 };
+
+//protected -routes : 
+
+exports.isSignedIn = expressJwt({
+  secret : process.env.SECRET,
+  userProperty : "auth"
+});
