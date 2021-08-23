@@ -8,7 +8,9 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+// My routes
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 //myfunction().then().catch()
 
@@ -33,6 +35,7 @@ app.use(cors());
 
 //MY ROUTES
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 //  PORT
 const port = 8008;
