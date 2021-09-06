@@ -24,3 +24,33 @@ exports.createCategoryy = (req, res) => {
     res.json({ category });
   });
 };
+
+exports.getCategory = (req, res) => {
+  return res.json(req.category);
+};
+
+exports.getAllCategories = (req, res) => {
+  Category.find().exec((err, categories) => {
+    if (err) {
+      return res.status(400).json({
+        error: "No  Categories set found ;(",
+      });
+    }
+
+    res.json(categories);
+  });
+};
+
+exports.updateCategory = (req, res) => {
+  const category = req.category;
+  category.name = req.body.name;
+
+  category.save((err, updatedCategory) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Unable to update Category ;(",
+      });
+    }
+    res.json(updatedCategory);
+  });
+};
