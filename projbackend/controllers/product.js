@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-const formidable = require("fromidable");
+const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
 
@@ -19,7 +19,7 @@ exports.getProductById = (req, res, next, id) => {
 };
 
 exports.createProduct = (req, res) => {
-  let form = formidable.IncomingForm();
+  let form = new formidable.IncomingForm();
   form.keepExtensions = true;
 
   form.parse(req, (err, fields, file) => {
@@ -29,11 +29,13 @@ exports.createProduct = (req, res) => {
       });
     }
 
-    // Destructuring the feilds.
-    const { price, name, description, category, stock } = fields;
+    console.log(fields);
 
-    if (!name || !description || !price || !stock) {
-      res.status(400).json({
+    // Destructuring the feilds.
+    const { name, description, price, category, stock } = fields;
+
+    if (!name || !description || !price || !stock || !category) {
+      return res.status(400).json({
         error: "PLEASE CHECK THE DETAILS..",
       });
     }
@@ -48,7 +50,7 @@ exports.createProduct = (req, res) => {
         });
       }
       product.photo.data = fs.readFileSync(file.photo.path);
-      product.photo.type = file.photo.type;
+      product.photo.contentType = file.photo.type;
     }
 
     product.save((err, product) => {
