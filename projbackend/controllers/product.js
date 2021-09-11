@@ -150,6 +150,17 @@ exports.photo = (req, res, next) => {
   next();
 };
 
+exports.getAllUnqCategories = (req, res) => {
+  Product.distinct("category", {}, (err, categories) => {
+    if (err) {
+      return res.status(400).json({
+        error: "NO CATEGORY FOUND ",
+      });
+    }
+    res.json(categories);
+  });
+};
+
 exports.updateStock = (req, res, next) => {
   let myOperations = req.body.order.prodcuts.map((prod) => {
     return {
