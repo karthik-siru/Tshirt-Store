@@ -12,9 +12,7 @@ export const signup = (user) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
 };
 
 export const signin = (user) => {
@@ -29,9 +27,7 @@ export const signin = (user) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
 };
 
 export const authenticate = (data, next) => {
@@ -49,17 +45,13 @@ export const signout = (next) => {
     return fetch(`${API}/signout`, {
       method: "GET",
     })
-      .then((response) => {
-        console.log("Signout sucess");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((response) => console.log("signout success"))
+      .catch((err) => console.log(err));
   }
 };
 
-export const isAuthenticated = () => {
-  if (typeof window === "undefined") {
+export const isAutheticated = () => {
+  if (typeof window == "undefined") {
     return false;
   }
   if (localStorage.getItem("jwt")) {
