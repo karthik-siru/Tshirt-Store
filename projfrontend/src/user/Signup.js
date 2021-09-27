@@ -23,15 +23,17 @@ const Signup = () => {
     setValues({ ...values, error: false });
     signup({ name, email, password })
       .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
+        if (data && data.err) {
+          setValues({ ...values, error: data.err, success: false });
         } else {
+          console.log("from onsubmit else conditin ");
+          console.log(error, "error after succesful submisssion");
           setValues({
             ...values,
             name: "",
             email: "",
             password: "",
-            error: false,
+            error: "",
             success: true,
           });
         }
@@ -89,7 +91,7 @@ const Signup = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-            New account was created successfully. Please{" "}
+            New account was created successfully. Please
             <Link to="/signin">Login Here</Link>
           </div>
         </div>

@@ -10,7 +10,9 @@ router.post(
     // validators
     check("name", "name should be at least 5 chars long").isLength({ min: 3 }),
     check("email", "Please provide a valid email ").isEmail(),
-    check("password", "password mari ila pettav entra ").isLength({ min: 8 }),
+    check("password", "password must be atleast 8 char long").isLength({
+      min: 8,
+    }),
   ],
   signup
 );
@@ -28,8 +30,8 @@ router.post(
 // throw a request
 router.get("/signout", signout);
 
-router.get("/test" , isSignedIn, (req , res ) => {
+router.get("/test", isSignedIn, (req, res) => {
   res.send("proected--route ");
 });
- 
+
 module.exports = router;
