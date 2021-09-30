@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
-import createCategory from "./helper/adminapicall";
+import { createCategory } from "./helper/adminapicall";
 
 const AddCategory = () => {
   const [name, setName] = useState("");

@@ -33,10 +33,9 @@ exports.getAllCategories = (req, res) => {
   Category.find().exec((err, categories) => {
     if (err) {
       return res.status(400).json({
-        err: "No  Categories set found ;(",
+        error: "No Categories found in DB",
       });
     }
-
     res.json(categories);
   });
 };

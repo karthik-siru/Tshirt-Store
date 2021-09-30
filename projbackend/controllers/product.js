@@ -10,7 +10,7 @@ exports.getProductById = (req, res, next, id) => {
     .exec((err, product) => {
       if (err) {
         return res.status(400).json({
-          error: "PRODUCT not found in DB",
+          err: "PRODUCT not found in DB",
         });
       }
 
@@ -26,7 +26,7 @@ exports.createProduct = (req, res) => {
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
-        error: "UNABLE TO CREATE PRODUCT",
+        err: "UNABLE TO CREATE PRODUCT",
       });
     }
 
@@ -37,7 +37,7 @@ exports.createProduct = (req, res) => {
 
     if (!name || !description || !price || !stock || !category) {
       return res.status(400).json({
-        error: "PLEASE CHECK THE DETAILS..",
+        err: "PLEASE CHECK THE DETAILS..",
       });
     }
 
@@ -47,7 +47,7 @@ exports.createProduct = (req, res) => {
     if (file.photo) {
       if (file.photo.size > 3145728) {
         return res.status(400).json({
-          error: "FILE SIZE TOO BIG ",
+          err: "FILE SIZE TOO BIG ",
         });
       }
       product.photo.data = fs.readFileSync(file.photo.path);
@@ -57,7 +57,7 @@ exports.createProduct = (req, res) => {
     product.save((err, product) => {
       if (err) {
         return res.status(400).json({
-          error: "SAVING PHOTO IN DB FAILED ",
+          err: "SAVING PHOTO IN DB FAILED ",
         });
       }
       res.json(product);
@@ -77,7 +77,7 @@ exports.updateProduct = (req, res) => {
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
-        error: "UNABLE TO FETCH PRODUCT",
+        err: "UNABLE TO FETCH PRODUCT",
       });
     }
     // updation part done by this two lines
@@ -88,7 +88,7 @@ exports.updateProduct = (req, res) => {
     if (file.photo) {
       if (file.photo.size > 3145728) {
         return res.status(400).json({
-          error: "FILE SIZE TOO BIG ",
+          err: "FILE SIZE TOO BIG ",
         });
       }
       product.photo.data = fs.readFileSync(file.photo.path);
@@ -98,7 +98,7 @@ exports.updateProduct = (req, res) => {
     product.save((err, product) => {
       if (err) {
         return res.status(400).json({
-          error: "UPDATION OF PRODUCT FAILED ",
+          err: "UPDATION OF PRODUCT FAILED ",
         });
       }
       res.json(product);
@@ -111,7 +111,7 @@ exports.deleteProduct = (req, res) => {
   product.remove((err, deletedproduct) => {
     if (err) {
       return res.status(400).json({
-        error: "FAILED TO DELETE THE PRODUCT",
+        err: "FAILED TO DELETE THE PRODUCT",
       });
     }
     res.json({
@@ -134,7 +134,7 @@ exports.getAllProducts = (req, res) => {
     .exec((err, products) => {
       if (err) {
         return res.status(400).json({
-          error: "NO PRODUCTS FOUND ",
+          err: "NO PRODUCTS FOUND ",
         });
       }
       res.json(products);
@@ -154,7 +154,7 @@ exports.getAllUnqCategories = (req, res) => {
   Product.distinct("category", {}, (err, categories) => {
     if (err) {
       return res.status(400).json({
-        error: "NO CATEGORY FOUND ",
+        err: "NO CATEGORY FOUND ",
       });
     }
     res.json(categories);
@@ -173,7 +173,7 @@ exports.updateStock = (req, res, next) => {
 
   Product.bulkWrite(myOperations, {}, (err, products) => {
     return res.status(400).json({
-      error: "BULK OPERATION FAILED",
+      err: "BULK OPERATION FAILED",
     });
   });
   next();
