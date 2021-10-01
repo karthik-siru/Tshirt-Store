@@ -12,7 +12,9 @@ const AdminDashBoard = () => {
   const adminLeftPanel = () => {
     return (
       <div className="card" style={{ marginLeft: "9px" }}>
-        <h4 className="card-header bg-dark text-white">Admin Navigation</h4>
+        <h4 className="card-header bg-dark text-white text-center">
+          Admin Navigation
+        </h4>
         <ul className="List-group" style={{ padding: "0px" }}>
           <li className="List-group-item">
             <Link
@@ -59,25 +61,27 @@ const AdminDashBoard = () => {
   const adminRightPanel = () => {
     return (
       <div className="card" style={{ marginRight: "9px" }}>
-        <h4 className="card-header bg-dark text-white">Admin Information</h4>
+        <h4 className="card-header bg-dark text-white text-center">
+          Admin Information
+        </h4>
         <ul className="list-group" style={{ textAlign: "start" }}>
           <li className="list-group-item">
             <span
               className="badge bg-warning mr-2"
               style={{ color: "#212529" }}
             >
-              Name:{" "}
-            </span>{" "}
-            {name}
+              Name:
+            </span>
+            <span style={{ color: "darkblue" }}>{name}</span>
           </li>
           <li className="list-group-item">
             <span
               className="badge bg-warning mr-2"
               style={{ color: "#212529" }}
             >
-              Email:{" "}
-            </span>{" "}
-            {email}
+              Email:
+            </span>
+            <span style={{ color: "darkblue" }}>{email}</span>
           </li>
           <li className="list-group-item">
             <span className="badge bg-danger" style={{ color: "#212529" }}>
@@ -94,9 +98,9 @@ const AdminDashBoard = () => {
       title="Welcome to Admin Area"
       description="Manage all of your Products here"
     >
-      <div className="row">
-        <div className="col-3">{adminLeftPanel()}</div>
-        <div className="col-9">{adminRightPanel()}</div>
+      <div className="row justify-content-center">
+        <div className="col-4">{adminLeftPanel()}</div>
+        <div className="col-6">{adminRightPanel()}</div>
       </div>
     </Base>
   );

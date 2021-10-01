@@ -30,6 +30,10 @@ router.post(
   createProduct
 );
 
+// get all routes
+router.get("/product/all", getAllProducts);
+router.get("/product/categories", getAllUnqCategories);
+
 // read routes
 router.get("/product/:productId", getProduct);
 router.get("/product/photo/:productId", photo);
@@ -45,17 +49,11 @@ router.delete(
 
 // update routes
 router.put(
-  "./product/:productId/:userId",
+  "/product/:productId/:userId",
   isSignedIn,
   isAuthenticated,
   isAdmin,
   updateProduct
 );
-
-// get all routes
-
-router.get("/product/all", getAllProducts);
-
-router.get("/product/categories", getAllUnqCategories);
 
 module.exports = router;

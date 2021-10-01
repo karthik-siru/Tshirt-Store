@@ -96,7 +96,7 @@ const AddProduct = () => {
         className="alert alert-success mt-3"
         style={{ display: createdProduct ? "" : "none" }}
       >
-        <h4>{name} created succesfully </h4>
+        <h4> CREATED SUCCESSFULLY </h4>
       </div>
     );
   };
@@ -113,7 +113,7 @@ const AddProduct = () => {
   };
 
   const createProductForm = () => (
-    <form>
+    <form className="p-4">
       <span>Post photo</span>
       <div className="form-group">
         <label className="btn btn-block btn-success">
