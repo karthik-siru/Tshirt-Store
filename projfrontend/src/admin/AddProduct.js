@@ -74,7 +74,7 @@ const AddProduct = () => {
             photo: "",
             stock: "",
             loading: false,
-            createdProduct: true,
+            createdProduct: data.name,
           });
         }
       })
@@ -93,10 +93,10 @@ const AddProduct = () => {
   const successMessage = () => {
     return (
       <div
-        className="alert alert-success mt-3"
+        className="alert alert-success mt-3 text-center"
         style={{ display: createdProduct ? "" : "none" }}
       >
-        <h4> CREATED SUCCESSFULLY </h4>
+        <h4> {createdProduct}UPDATED SUCCESSFULLY </h4>
       </div>
     );
   };
@@ -104,7 +104,7 @@ const AddProduct = () => {
   const errorMessage = () => {
     return (
       <div
-        className="alert alert-danger mt-3"
+        className="alert alert-danger mt-3 text-center"
         style={{ display: error ? "" : "none" }}
       >
         <h4>UNABLE TO CREATE PRODUCT</h4>
@@ -183,7 +183,7 @@ const AddProduct = () => {
         onClick={onSubmit}
         className="btn btn-outline-success"
       >
-        Create Product
+        Update Product
       </button>
     </form>
   );
