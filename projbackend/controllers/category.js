@@ -41,8 +41,11 @@ exports.getAllCategories = (req, res) => {
 };
 
 exports.updateCategory = (req, res) => {
+  console.log("IN UPDATE CATEGORY (BACKEND )");
   const category = req.category;
   category.name = req.body.name;
+
+  console.log(req.body);
 
   category.save((err, updatedCategory) => {
     if (err) {
