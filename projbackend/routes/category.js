@@ -28,8 +28,8 @@ router.post(
 );
 
 // read
-router.get("/category/:categoryId", getCategory);
 router.get("/category/all", getAllCategories);
+router.get("/category/:categoryId", getCategory);
 
 // update
 router.put(
