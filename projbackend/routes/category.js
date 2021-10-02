@@ -33,7 +33,7 @@ router.get("/category/:categoryId", getCategory);
 
 // update
 router.put(
-  "/category/:categoryId/:userId",
+  "/category/update/:categoryId/:userId",
   isSignedIn,
   isAuthenticated,
   isAdmin,

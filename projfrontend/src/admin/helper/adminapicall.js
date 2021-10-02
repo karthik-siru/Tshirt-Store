@@ -63,18 +63,18 @@ export const getCategory = (categoryId) => {
 
 // update category
 export const UpdateCategory = (categoryId, userId, token, category) => {
-  console.log("from ADMIN-API CALL  ");
-  console.log(category);
-  return fetch(`${API}/category/${categoryId}/${userId}`, {
+  // console.log("from ADMIN-API CALL  ");
+  // console.log(category);
+  return fetch(`${API}/category/update/${categoryId}/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(category),
   })
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .catch((err) => {

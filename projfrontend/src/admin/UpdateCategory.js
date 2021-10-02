@@ -55,7 +55,6 @@ const UpdatemyCategory = ({ match }) => {
         if (data && data.err) {
           setError(data.err);
         } else {
-          console.log("in else form bro ");
           setError("");
           setSuccess(true);
         }
