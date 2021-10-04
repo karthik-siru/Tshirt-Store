@@ -96,7 +96,7 @@ const AddProduct = () => {
         className="alert alert-success mt-3 text-center"
         style={{ display: createdProduct ? "" : "none" }}
       >
-        <h4> {createdProduct}UPDATED SUCCESSFULLY </h4>
+        <h4> {createdProduct} CREATED SUCCESSFULLY </h4>
       </div>
     );
   };
@@ -183,7 +183,7 @@ const AddProduct = () => {
         onClick={onSubmit}
         className="btn btn-outline-success"
       >
-        Update Product
+        Create Product
       </button>
     </form>
   );
