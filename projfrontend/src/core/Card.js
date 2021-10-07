@@ -1,36 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router";
-import Imagehelper from "./helper/Imagehelper";
-import { addItemtoCart } from "./helper/CartHelper";
+import ImageHelper from "./helper/ImageHelper";
+import { Redirect } from "react-router-dom";
+import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
-export const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
-  const [redirect, setredirect] = useState(false);
+const Card = ({
+  product,
+  addtoCart = true,
+  removeFromCart = false,
+  setreload = (f) => f,
+  reload = undefined,
+}) => {
+  const [redirect, setRedirect] = useState(false);
+  const [count, setCount] = useState(product.count);
 
-  const [count, setcount] = useState(product.count);
+  const cartTitle = product ? product.name : "A photo from pexels";
+  const cartDescrption = product ? product.description : "Default description";
+  const cartPrice = product ? product.price : "DEFAULT";
 
-  const CardTitle = product ? product.name : "A photo from pexel";
-  const CardDescription = product
-    ? product.description
-    : "A nice photo basically";
-  const CardPrice = product ? product.price : "DEFAULT";
-
-  const addtoCartHelper = () => {
-    addItemtoCart(product, () => {
-      setredirect(true);
-    });
+  const addToCart = () => {
+    addItemToCart(product, () => setRedirect(true));
   };
 
-  const getRedirect = (redirect) => {
+  const getARedirect = (redirect) => {
     if (redirect) {
       return <Redirect to="/cart" />;
     }
   };
 
-  const showAddtoCart = (addtoCart) => {
+  const showAddToCart = (addtoCart) => {
     return (
       addtoCart && (
         <button
-          onClick={addtoCartHelper}
+          onClick={addToCart}
           className="btn btn-block btn-outline-success mt-2 mb-2"
         >
           Add to Cart
@@ -43,7 +44,10 @@ export const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
     return (
       removeFromCart && (
         <button
-          onClick={() => {}}
+          onClick={() => {
+            removeItemFromCart(product._id);
+            setreload(!reload);
+          }}
           className="btn btn-block btn-outline-danger mt-2 mb-2"
         >
           Remove from cart
@@ -51,19 +55,18 @@ export const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
       )
     );
   };
-
   return (
     <div className="card text-white bg-dark border border-info ">
-      <div className="card-header lead">{CardTitle}</div>
+      <div className="card-header lead">{cartTitle}</div>
       <div className="card-body">
-        {getRedirect(redirect)}
-        <Imagehelper product={product} />
-        <p className="lead bg-success font-weight-normal text-wrap text-center ">
-          {CardDescription}
+        {getARedirect(redirect)}
+        <ImageHelper product={product} />
+        <p className="lead bg-success font-weight-normal text-wrap">
+          {cartDescrption}
         </p>
-        <p className="btn btn-success rounded  btn-sm px-4">Rs.{CardPrice}</p>
+        <p className="btn btn-success rounded  btn-sm px-4">$ {cartPrice}</p>
         <div className="row">
-          <div className="col-12">{showAddtoCart(addtoCart)}</div>
+          <div className="col-12">{showAddToCart(addtoCart)}</div>
           <div className="col-12">{showRemoveFromCart(removeFromCart)}</div>
         </div>
       </div>

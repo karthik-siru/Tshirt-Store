@@ -3,28 +3,30 @@ import "../styles.css";
 import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
-import { loadCart } from "./helper/CartHelper";
+import { loadCart } from "./helper/cartHelper";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
+  const [reload, setreload] = useState(false);
 
   useEffect(() => {
     setProducts(loadCart());
-  }, []);
+  }, [reload]);
 
   const loadAllProducts = () => {
     return (
       <div>
         <h2>This section is to load products</h2>
-        {products &&
-          products.map((product, index) => (
-            <Card
-              key={index}
-              product={product}
-              removeFromCart={true}
-              addtoCart={false}
-            />
-          ))}
+        {products.map((product, index) => (
+          <Card
+            key={index}
+            product={product}
+            removeFromCart={true}
+            addtoCart={false}
+            setreload={setreload}
+            reload={reload}
+          />
+        ))}
       </div>
     );
   };
